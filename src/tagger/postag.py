@@ -237,10 +237,20 @@ class TextTagger:
         if datapath != None:
             if not os.path.isabs(tokenizer_file):
                 tokenizer_file = os.path.join(datapath, tokenizer_file)
+                if not os.path.isfile(tokenizer_file):
+                    raise FileNotFoundError(tokenizer_file)
             if not os.path.isabs(freq_words_file):
                 freq_words_file = os.path.join(datapath, freq_words_file)
+                if not os.path.isfile(freq_words_file):
+                    raise FileNotFoundError(freq_words_file)
             if not os.path.isabs(model_file):
                 model_file = os.path.join(datapath, model_file)
+                if not os.path.isfile(model_file):
+                    raise FileNotFoundError(model_file)
+        for filename in (tokenizer_file, freq_words_file, model_file):
+        if not os.path.isfile(filename):
+            raise FileNotFoundError(filename)
+
         self.tokenizer = hfst.PmatchContainer(tokenizer_file)
         self.freq_words = set(open(freq_words_file).readlines())
         self.tagger = finnpos.Labeler()
