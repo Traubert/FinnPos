@@ -248,8 +248,8 @@ class TextTagger:
                 if not os.path.isfile(model_file):
                     raise FileNotFoundError(model_file)
         for filename in (tokenizer_file, freq_words_file, model_file):
-        if not os.path.isfile(filename):
-            raise FileNotFoundError(filename)
+            if not os.path.isfile(filename):
+                raise FileNotFoundError(filename)
 
         self.tokenizer = hfst.PmatchContainer(tokenizer_file)
         self.freq_words = set(open(freq_words_file).readlines())
