@@ -748,7 +748,7 @@ void ParamTable::store(std::ostream &out) const
 void ParamTable::load(std::istream &in, bool reverse_bytes)
 {
   read_val<bool>(in, trained, reverse_bytes);
-  std::cerr << trained << std::endl;
+//  std::cerr << trained << std::endl;
   read_map(in, feature_template_map, reverse_bytes);
   read_map(in, unstruct_param_table, reverse_bytes);
   read_map(in, struct_param_table, reverse_bytes);

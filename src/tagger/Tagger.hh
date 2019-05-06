@@ -49,7 +49,7 @@ public:
 	     std::istream &dev_in);
 
   void label(std::istream &in);
-  void label_stream(std::istream &in);
+  std::string label_stream(std::istream &in);
   void lemmatize_stream(std::istream &in);
 
   void store(std::ostream &out) const;

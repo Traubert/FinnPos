@@ -258,8 +258,9 @@ void Tagger::label(std::istream &in)
     }
 }
 
-void Tagger::label_stream(std::istream &in)
+std::string Tagger::label_stream(std::istream &in)
 {
+  std::stringstream retval;
   unsigned int line = 0;
 
   while (in)
@@ -291,13 +292,13 @@ void Tagger::label_stream(std::istream &in)
 	      if (s.at(j).get_word_form() == "_#_")
 		{ continue; }
 
-	      std::cout << s.at(j).get_word_form() 
+	      retval << s.at(j).get_word_form() 
 			<< "\t_\t" << s.at(j).get_lemma() 
 			<< "\t" << label_extractor.
 		get_label_string(s.at(j).get_label()) 
 			<< "\t" << s.at(j).get_annotations() << std::endl;
 	    }
-	  std::cout << std::endl;
+	  retval << '\n';
 	}
       else if (tagger_options.inference == MARGINAL)
 	{
@@ -320,19 +321,20 @@ void Tagger::label_stream(std::istream &in)
 	      std::sort(candidates.begin(), candidates.end());
 	      std::reverse(candidates.begin(), candidates.end());
 
-	      std::cout << s.at(j).get_word_form();
+	      retval << s.at(j).get_word_form();
 	      for (unsigned int k = 0; k < candidates.size(); ++k)
 		{
-		  std::cout << '\t' << candidates[k].second << ' ' << candidates[k].first << std::endl; 
+		  retval << '\t' << candidates[k].second << ' ' << candidates[k].first << std::endl; 
 		}
 	    }
-	  std::cout << std::endl;
+	  retval << '\n';
 	}
       else
 	{
 	  throw NotImplemented();
 	}
     }
+  return retval.str();
 }
 
 void Tagger::lemmatize_stream(std::istream &in)
