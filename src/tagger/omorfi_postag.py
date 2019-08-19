@@ -228,7 +228,7 @@ def restore_lemmas(labeled_sentence):
             if '[PROPER=PROPER]' in label:
                 ann = get_proptags(lemmas)
         lemma = lemma.replace(HASH, "#")
-        retval.append((wf, lemma, label))
+        retval.append((wf, lemma, label, ann))
     return retval
 
 class TextTagger:
