@@ -3,8 +3,8 @@ CXXFLAGS=-Wall -Wextra -g -O3 -Wfatal-errors -Werror -std=c++0x
 
 SWIG_CXX=g++
 SWIG_CXXFLAGS=-O2 -std=c++0x
-PYTHON_INCLUDE=$(shell python3.5-config --cflags)
-PYTHON_LIBS=$(shell python3.5-config --ldflags)
+PYTHON_INCLUDE=$(shell python3-config --cflags)
+PYTHON_LIBS=$(shell python3-config --ldflags)
 
 MODULES=io Word LemmaExtractor LabelExtractor Sentence ParamTable \
 Data TrellisColumn Trellis Trainer PerceptronTrainer SGDTrainer \
